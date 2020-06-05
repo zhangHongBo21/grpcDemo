@@ -88,6 +88,7 @@ func main() {
 	}
 	// 实例化grpc Server, 并开启TLS认证
 	grpcServer := grpc.NewServer(grpc.Creds(creds))
+
 	//grpcServer := grpc.NewServer()
 
 	pb.RegisterSearchServiceServer(grpcServer, &SearchService{})
