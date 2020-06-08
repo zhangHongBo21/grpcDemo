@@ -64,6 +64,7 @@ func get() {
 	opts = append(opts, grpc.WithTransportCredentials(creds))
 	opts = append(opts, grpc.WithPerRPCCredentials(new(SearchService)))
 	conn, err := grpc.Dial(":"+port, opts...)
+
 	if err != nil {
 		log.Fatalf("grpc.Dial err: %v", err)
 	}

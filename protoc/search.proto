@@ -1,6 +1,13 @@
 syntax = "proto3";
+import "google/api/annotations.proto";
 service SearchService {
-    rpc Search (SearchRequest) returns (SearchResponse);
+//    rpc Search (SearchRequest) returns (SearchResponse);
+    rpc Search(SearchRequest) returns (SearchResponse) {
+        option (google.api.http) = {
+            post: "/v1/example/echo"
+            body: "*"
+        };
+    }
 }
 message SearchRequest {
     string query = 1;

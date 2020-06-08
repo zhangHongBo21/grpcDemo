@@ -55,6 +55,10 @@ func (s *SearchService) Search(ctx context.Context, r *pb.SearchRequest) (*pb.Se
 const port = "9001"
 
 func main() {
+	//ceshi := big.NewInt(33333333333333333334)
+	//fmt.Println(gconv.String(ceshi.String()))
+	//g := g.Server()
+	//g.Run()
 	// 务必先进行初始化
 	err := sentinel.InitDefault()
 	if err != nil {
@@ -87,10 +91,9 @@ func main() {
 		grpclog.Fatalf("Failed to generate credentials %v", err)
 	}
 	// 实例化grpc Server, 并开启TLS认证
+	grpc.EnableTracing = true
+	//grpc.server
 	grpcServer := grpc.NewServer(grpc.Creds(creds))
-
-	//grpcServer := grpc.NewServer()
-
 	pb.RegisterSearchServiceServer(grpcServer, &SearchService{})
 	grpcServer.Serve(lis)
 }
